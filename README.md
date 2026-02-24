@@ -1,4 +1,4 @@
-<img src="Untitled.png" width="200" align="right" alt="Logo">
+<img src="VNC_stage.png" width="200" align="right" alt="Logo">
 
 <h1>DevSeqVNC</h1>
 
