@@ -1,0 +1,260 @@
+---
+title: "File_Download_and_RDS_Data_Inspection.Rmd"
+author: "Myrto"
+date: "2026-02-23"
+output: html_document
+---
+
+This document provides code that can be used to generate the figure panels of the manuscript
+
+#Set the environment
+```{r setEnvironment, purl=TRUE}
+library(Seurat)
+library(ggplot2)
+library(tidyverse)
+library(SeuratDisk)
+```
+# ###############################################################################
+# Downloading the files
+
+```{r}
+dest_file <- "PATH_TO_OUTPUT_FOLDER" #Replace with the path of the folder in quotes where all of the data will be saved
+file_name <- "FILE_NAME" #Replace with the name of the file in quotes.
+```
+
+# 1. Downloading Seurat Objects from GEO (Recommended)
+```{r}
+url <- "URL_FROM_GEO" #Replace with the GEO URL in quotes of the file you want to download 
+options(timeout = 600) #it indicates the number of seconds that are used as a threshold for each file download. The larger the file the longer it will take to download. Increase accordingly depending on the file size.
+download.file(url, destfile = file.path(dest_file, file_name), mode = "wb") #downloads the file
+```
+
+# 2. Downloading the Seurat Objects from GEO Manually (Recommended)
+
+# 3. Downloading loom files from Scope (NOT Recommended)
+```{r}
+#We recommend that you access the 'rds' files from our GEO page. However, if you wish to access the `.loom` file you can follow the following steps:
+  #1. Downloading the `.loom` file from Scope
+      #The `.loom` file can be downloaded from Scope (floppy disk icon) but it does NOT include the metadata information.
+      #For more information you can take a look at the Tutorials in Scope: https://www.youtube.com/watch?v=tHUNMo3Bsi0&t=2s
+  #2. Downloading the metadata 
+      #The metadata of each .rds are saved on our GEO page. You can use the code in `1. Downloading Seurat Objects from GEO (Recommended)` to download the files or download them manually.
+
+#Importing the data        
+loom_path <- "PATH_TO_LOOM"    #Replace with the path of the folder in quotes where the loom was saved       
+metadata_path <- file.path(dest_file, file_name) #If the metadata object was NOT downloaded through `1. Downloading Seurat Objects from GEO` above, replace the paths with the location of the file in your system
+
+import_loom <- Connect(loom_path, mode = "r") #gets the loom
+meta.data <- as.data.frame(read_csv(metadata_path)) 
+
+dgem <- get_dgem(import_loom) #isolates information from the loom
+Seurat_object <- CreateSeuratObject(counts = dgem, meta.data = meta.data) #reconstructs the Seurat Object
+
+#saving the object
+saveRDS(Seurat_object, file = file.path(dest_file, file_name))
+
+```
+# ###############################################################################
+# Importing the data and setting the parameters
+
+```{r Figure1, purl=TRUE}
+
+outputFolder <- "PATH_TO_OUTPUT_FOLDER" #Replace with the path of the folder where all of the figures will be saved
+
+#Importing the .rds objects
+#If the objects were NOT downloaded through `1. Downloading Seurat Objects from GEO` above, replace the paths with the location of the files in your system
+VNC.all <- file.path(dest_file, file_name) 
+VNC.neurons <- file.path(dest_file, file_name)
+VNC.subset.1ary <- file.path(dest_file, file_name)
+VNC.subset.2ary <- file.path(dest_file, file_name)
+```
+
+# ###############################################################################
+# Analysis
+
+## Glia annotation 
+See UMAP in panel 1b for more information
+```{r}
+cols.glia.annotation <- c(wesanderson::wes_palettes[["Darjeeling1"]][1:3])
+names(cols.glia.annotation) <- c("glia","neuron","other")
+
+DimPlot(VNC.all, 
+        reduction = "UMAPallages", 
+        group.by = "CellType",
+        cols = cols.glia.annotation, 
+        pt.size = 1.5, 
+        raster.dpi = c(1180,1180)) + 
+labs(title = "Glia annotation")
+ggsave(file.path(outputFolder, "glia_annotation.png"), width = 20, height = 17, units = "cm", dpi = 600)
+```
+
+## Table with the number of glia, neurons and other cell types in females and males
+See table in panel 1b for more information
+```{r}
+#creating an empty matrix
+matrix <- matrix(nrow=4, ncol=4, 0)
+rownames(matrix) <- c("neuron", "glia", "other", "Total")
+colnames(matrix) <- c("F", "F%", "M", "M%")
+
+#adding the number of cells per cell type and sex
+for (x in c("neuron", "glia", "other")){
+  matrix[x,c("F", "M")] <-table(VNC.all$CellType, VNC.all$Sex)[x,]
+}
+#calculating total numbers and percentages
+matrix["Total", c("F", "M")] <- c(sum(matrix[,"F"]), sum(matrix[,"M"]))
+matrix [, "F%"] <- round(100*(matrix[,"F"]/matrix["Total", "F"]))
+matrix [, "M%"] <- round(100*(matrix[,"M"]/matrix["Total", "M"]))
+```
+
+## UMAP of neurons BEFORE stage integration
+See panel 1c for more information
+```{r}
+
+Stage.cols<- c("6"="#009E73", "24"="#CC79A7", "36"="#E69F00", "48"="#0072B2")
+   
+DimPlot(VNC.neurons, 
+        cols = Stage.cols, 
+        reduction = "UMAPallages", 
+        group.by = "Stage", 
+        pt.size = 1.5, 
+        raster.dpi = c(1180,1180)) &
+labs(title = "Neurons pre-Integration")
+ggsave(file.path(outputFolder , "neurons_pre-integration.png"), width = 20, height = 18, units = "cm", dpi = 600)
+
+```
+
+## UMAP of neurons AFTER stage integration
+See panel 1c for more information
+```{r}
+Stage.cols<- c("6"="#009E73", "24"="#CC79A7", "36"="#E69F00", "48"="#0072B2")
+
+DimPlot(VNC.neurons, 
+        cols = flybrainSeq::age.cols, 
+        reduction = "umap", 
+        group.by = "Stage", 
+        pt.size = 1.5, 
+        raster.dpi = c(1180,1180))&
+  labs(title = "Neurons post-Integration")
+ggsave(file.path(outputFolder, "neurons_post-integration.png"), width =20, height = 18, units = "cm", dpi = 600)
+```
+
+## Birthtime annotation of neurons
+See panel 1d for more information
+```{r}
+birthorder_col <- c(earlysecondary="#4B458C", secondary="#B5C76A", primary="#4F642F", unknown="grey")
+                  
+DimPlot(VNC.neurons, 
+        cols = birthorder_col, 
+        reduction = "umap", 
+        group.by = "birthtime", 
+        pt.size = 1.5, 
+        raster.dpi = c(1180,1180)) &
+  labs(title = "Birth time annotation")
+ggsave(file.path(outputFolder, paste0("birthtime_umap.png")), width = 20, height = 18, units = "cm", dpi = 600)
+```
+
+## Neurotransmitter annotation
+See panel 2b for more information
+```{r}
+nt.cols <- c(GABA="cornflowerblue", Acetilcholine= "darkorange", Glutamate="#AB0D47", unknown="grey")
+
+DimPlot(VNC.neurons, 
+          reduction = "umap", 
+          group.by = "neurotransmitter", 
+          cols = nt.cols, 
+          pt.size = 3, 
+          raster=TRUE, 
+          raster.dpi = c(4200,4200)) &
+  labs(title = "Neurotransmitter annotation")
+ ggsave(file.path(outputFolder, paste0("nt_identity_",red,".png")), 
+         width = 20, height = 18, units = "cm", dpi = 1200)
+
+```
+
+## Hemilineage annotation
+See panel 2c for more information
+```{r}
+EMhemilineagesColours <- c(
+  "NA" = "#BEBEBE",
+  "None" = "#BEBEBE",
+  "TBD" = "#BEBEBE",
+  "Unknown" = "#BEBEBE",
+  "unassigned" = "#CCCCCC",
+  "VGlut_orphan" = "black",
+  "00A" = "#3B00FB",
+  "00B" = "#00FA9A",
+  "01A" = "#DEA0FD",
+  "01B" = "#C075A6",
+  "02A" = "#1C8356",
+  "03A" = "#16FF32",
+  "03B" = "#85660D",
+  "04A" = "#D85FF7",
+  "04B" = "#AA0DFE",
+  "05A" = "#B5EFB5",
+  "05B" = "#78B7C5",
+  "06A" = "#3283FE",
+  "06B" = "#B10DA1",
+  "07B" = "#FA0087",
+  "08A" = "#FF66FF",
+  "08B" = "#BDCDFF",
+  "09A" = "#C4451C",
+  "09B" = "#822E1C",
+  "10B" = "#2ED9FF",
+  "11A" = "#E4E1E3",
+  "11B" = "#90AD1C",
+  "12A" = "#F7E1A0",
+  "12B" = "#1CBE4F",
+  "13A" = "#FEAF16",
+  "13B" = "#325A9B",
+  "14A" = "#FC1CBF",
+  "14B" = "#D69C4E",
+  "15A" = "#1E1E1E",
+  "15B" = "#AAF400",
+  "16B" = "#F6222E",
+  "16X" = "#FB200E",
+  "17A" = "#FBE426",
+  "17B" = "#FAD510",
+  "17X.18X" = "navy",
+  "18B" = "#1C7F93",
+  "19A" = "#F8A19F",
+  "19B" = "#1CFFCE",
+  "20A.22A" = "#B00068",
+  "20A" = "#B00068",
+  "22A" = "brown1",
+  "20B.21B.22B" = "mediumaquamarine",
+  "21A" = "#66B0FF",
+  "21X" = "#5A5156",
+  "23B" = "#9966CC",
+  "24B.25B" = "#FAEFD1",
+  "26X" = "#683B79",
+  "27X" = "#8470FF"
+)
+
+
+DimPlot(VNC.neurons, reduction = "umap", group.by = "hemilineage",pt.size = 2, cols = EMhemilineagesColours, raster.dpi = c(1655,1655))&
+  labs(title = "Hemilineage annotation")
+ggsave(file.path(outputFolder, "VNC_combinedHemilineages.png"), width = 20, height = 18, units = "cm", dpi = 600)
+```
+
+
+## UMAP of primary and early secondary / secondary neurons
+See panel 1c for more information
+```{r}
+#VNC.subset_allages <- readRDS(VNC.1ary.2ary.subset.folder)
+VNC.subset_allages <- readRDS(VNC.1ary.2ary.subset.final.folder)
+
+Stage.cols<- c("6"="#009E73", "24"="#CC79A7", "36"="#E69F00", "48"="#0072B2")
+
+lapply(c("primary", "secondary"), function(Stage){
+  DimPlot(VNC.subset_allages[[Stage]],
+          cols = Stage.cols,
+          reduction = "umap_subset",
+          group.by = "Stage",
+          pt.size = 1.5,
+          raster.dpi = c(1180,1180)) &
+    labs(title = paste(Stage, "neurons", sep=" "))
+  ggsave(file.path(outputFolder, paste0(Stage,"_umap_subset.png")), width = 20, height = 18, units = "cm", dpi = 600)
+
+})
+```
+
