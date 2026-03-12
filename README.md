@@ -11,7 +11,7 @@ Raw sequencing data, CellRanger outputs and the final Seurat objects, are availa
 <br>
 The metadata file can be found in [metada](<insert link>).
 <br>
-For an interactive visualization of the data you can check our datasets on [Scope] (https://scope.aertslab.org/#/HundredDrills/*/welcome).
+For an interactive visualization of the data you can check our datasets on [Scope](https://scope.aertslab.org/#/HundredDrills/*/welcome).
 <br>
 Loom files have also available in [Zenodo]
 <br>
