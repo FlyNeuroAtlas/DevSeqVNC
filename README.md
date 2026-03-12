@@ -1,10 +1,10 @@
 <h1>DevSeqVNC</h1>
-<img src="VNC_stage.png" width="220" height=200 align="right" alt="Logo">
+<img src="VNC_stage.png" width="300" height=280 align="right" alt="Logo">
 
 
 Developmental scRNAseq atlas of the Nerve Cord of *Drosophila melanogaster*.  
 
-<br><br><br>
+<br><br>
 
 <h3>Data availability</h3>
 Raw sequencing data, CellRanger outputs and the final Seurat objects, are available on the GEO repository [GEO page](<insert link>).  
