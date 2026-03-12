@@ -1,4 +1,4 @@
-<h1>DevSeqVNC</h1>
+# DevSeqVNC
 <img src="/images/VNC_stage.png" width="300" height=280 align="right" alt="Logo">
 
 
@@ -6,7 +6,7 @@ Developmental scRNAseq atlas of the Nerve Cord of *Drosophila melanogaster*.
 
 <br><br>
 
-<h3>Data availability</h3>
+### Data availability
 Raw sequencing data, CellRanger outputs and the final Seurat objects, are available at Gene Expression Omnibus (GEO) under accession number GSE304221, and at BioProject under accession number PRJNA1297747.  
 <br>
 The metadata file can be found in [metada](<insert link>).
@@ -19,13 +19,13 @@ Loom files have also available in [Zenodo]
 - neurons: 10.5281/zenodo.17184089 <br>
 - glia: 10.5281/zenodo.17185431 <br>
 <br>
-To download files and inspect the data see [File_Download_and_RDS_Data_Inspection.Rmd] (<insert link>)
+To download files and inspect the data see [File_Download_and_RDS_Data_Inspection.Rmd](<insert link>)
 
 
 
 <br><br>
-<h3>Citation</h3>
+### Citation
 <!--<img src="qr_biorxiv.png" width="50" height=50 align="right" alt="Logo">-->
-Cachero, S. et al. bioRxiv (2025) [doi](https://doi.org/10.1101/2025.07.16.664682)
-[Google](https://google.com)
+Cachero, S. et al. bioRxiv (2025) [doi.org/10.1101/2025.07.16.664682](https://doi.org/10.1101/2025.07.16.664682)
+
 
