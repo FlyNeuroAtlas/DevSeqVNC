@@ -1,0 +1,88 @@
+An object of class Seurat
+24050 features across 178689 samples within 2 assays
+Active assay: integrated (3000 features, 2000 variable features)
+ 2 layers present: data, scale.data
+ 1 other assay present: RNA
+ 10 dimensional reductions calculated: pca, umap, PCAallages, UMAPallages, pca_subset_noCSM, umap_subset_noCSM, pca_subset_TFs, umap_subset_TFs, pca_subset, umap_subset
+
+UMAP embeddings:
+UMAPallages: calculated before stage integration
+umap: calculated after integration
+umap_subset: calculated after subsetting secondary neurons
+umap_subset_noCSM: calculated after subsetting secondary neurons, after the removal of Cell Surface Molecules
+umap_subset_TFs: calculated after subsetting secondary neurons, after the removal of Transcription Factors
+
+Details on the object construction can be found in Material and Methods and Supplemental Figure 1e of: "A Developmental Atlas of the Drosophila Nerve Cord Uncovers a Global Temporal Code for Neuronal Identity" (Cachero et al. 2025, doi.org/10.1101/2025.07.16.664682)
+
+Object metadata:
+orig.ident > 10x library lane
+nCount_RNA > number of detected UMI
+nFeature_RNA > number of detecte features
+Lane > 10x library lane
+BARCODE > Cell barcode without lane identifier
+donor_id_noVCF > vireo-assigned group in the absence of vcf reference
+donor_id_VCF > vireo-assigned group in the presence of vcf reference
+best_singlet_VCF > best vireo-assigned singlet group in the presence of vcf reference
+best_doublet_VCF > best and potential doublet combination if cell was a doublet
+percent_mito > percentage of counts assigned to mitochondria genes
+percent_ribo > percentage of counts assigned to ribosomal genes
+log10GenesPerUMI > log10-transformed ratio of the number of detected genes per UMI (Unique Molecular Identifier)
+rownames > Cell identifier
+SampleName > combination of collection date and collection vial
+Stage > Developmental stage of the animal the cell comes from
+Sex > Sex of the animal the cell comes from
+Tissue > Dissected tissue
+ExpectedMarker > Fluorescent marker carried by the genotype of the animal dissected, only expressed in specific cells
+UniqueCrossID > Unique identifier for the cross the sample came from
+Female_genotype > Genotype of the mother
+Male_genotype > Genotype of the father
+Pool > Sequencing lane identifier
+Assignment > Final DGRP genotype assigned through vireo demultiplexing
+lin.line > expected specific cells labelled by the line
+integrated_snn_res.0.05  > clusters at 0.05 resolution
+integrated_snn_res.0.1  > clusters at 0.1 resolution
+integrated_snn_res.4  > clusters at 4 resolution
+integrated_snn_res.7  > clusters at 7 resolution
+integrated_snn_res.15  > clusters at 15 resolution
+integrated_snn_res.20  > clusters at 20 resolution
+adultHemi  > hemilineage annotation transferred from Allen et al. adult VNC 
+birthtime  > annotation by time of neurogenesis 
+maturation  > whether more mature neuron of neuronal precursor
+hemilineage  > hemilineage prediction after full pipeline
+soma_neuromere  > soma segment (neuromere) prediction after full pipeline
+soma_neuromere_MCNS > soma segment (neuromere) prediction after full pipeline amended to macth MCNS annotation for 01B, where T1>T2, T2>T3, T3>A
+hemilineage_stem  > hemilineage prediction for the stem/precursors region
+precursorsAnnotation  > annotation of precursors cell types
+neurotransmitter > annotation of fast neurotransmitters identity
+amines > annotation of amine neurotransmission
+allDEGs_0.5 > secondary hemilineage clusters using all DEGs along trajectories and cutting at half the number of expected connectomics cell types. To ensure specificity of cluster numbers they need to be interpreted for each hemilineage-segment combination.
+allDEGsNotTFs_0.5  > secondary hemilineage clusters using all DEGs along trajectories BUT transcription factors and cutting at half the number of expected connectomics cell types. To ensure specificity of cluster numbers they need to be interpreted for each hemilineage-segment combination.
+CSMs_0.5  > secondary hemilineage clusters using only Cell Surface Molecules DE along trajectories and cutting at half the number of expected connectomics cell types. To ensure specificity of cluster numbers they need to be interpreted for each hemilineage-segment combination.
+allTFs_0.5 > secondary hemilineage clusters using all transcription factors DE along trajectories and cutting at half the number of expected connectomics cell types. To ensure specificity of cluster numbers they need to be interpreted for each hemilineage-segment combination.
+shTFs_0.5 > secondary hemilineage clusters using only 17 shared Transcription Factors along trajectories and cutting at half the number of expected connectomics cell types. To ensure specificity of cluster numbers they need to be interpreted for each hemilineage-segment combination.
+allDEGs_1 > secondary hemilineage clusters using all DEGs along trajectories and cutting at the number of expected connectomics cell types. To ensure specificity of cluster numbers they need to be interpreted for each hemilineage-segment combination.
+allDEGsNotTFs_1 > secondary hemilineage clusters using all DEGs along trajectories BUT transcription factors and cutting at the number of expected connectomics cell types. To ensure specificity of cluster numbers they need to be interpreted for each hemilineage-segment combination.
+CSMs_1 > secondary hemilineage clusters using only Cell Surface Molecules DE along trajectories and cutting at the number of expected connectomics cell types. To ensure specificity of cluster numbers they need to be interpreted for each hemilineage-segment combination.
+allTFs_1 > secondary hemilineage clusters using all transcription factors DE along trajectories and cutting at the number of expected connectomics cell types. To ensure specificity of cluster numbers they need to be interpreted for each hemilineage-segment combination. 
+shTFs_1 > secondary hemilineage clusters using only 17 shared Transcription Factors along trajectories and cutting at the number of expected connectomics cell types. To ensure specificity of cluster numbers they need to be interpreted for each hemilineage-segment combination.
+CorrectionDegree_1 > per cell degree of correction after sex-variability regression (calculated hemilineage by hemilineage). 
+correctionPerCluster_1 > degree of correction after sex-variability regression (calculated hemilineage by hemilineage) summarised by clusters matching the number of expected connectomics types. 
+CorrectionDegree_0.5 > per cell degree of correction after sex-variability regression (calculated hemilineage by hemilineage).
+correctionPerCluster_0.5 > degree of correction after sex-variability regression (calculated hemilineage by hemilineage) summarised by clusters matching half the number of expected connectomics types.
+markers_0.5_24 > number of DEGs between males and females at 24h when cluster number matches half the number of expected connectomics types.
+markers_0.5_36 > number of DEGs between males and females at 36h when cluster number matches half the number of expected connectomics types.
+markers_0.5_48 > number of DEGs between males and females at 48h when cluster number matches half the number of expected connectomics types.
+markers_0.5_24_36_48 > number of DEGs between males and females taking 24, 36, 48h together when cluster number matches half the number of expected connectomics types.
+markers_1_24 > number of DEGs between males and females at 24h when cluster number matches the number of expected connectomics types.
+markers_1_36 > number of DEGs between males and females at 36h when cluster number matches the number of expected connectomics types.
+markers_1_48 > number of DEGs between males and females at 48h when cluster number matches the number of expected connectomics types. 
+markers_1_24_36_48 > number of DEGs between males and females taking 24, 36, 48h together when cluster number matches the number of expected connectomics types.
+fru_0.7 > fru identity at threshold 0.7
+fru_positive_geneThr_0.7_minThr_0.1 > summary of fru identity by cluster
+fru_clone > fru clone name annotation matching Cachero et al 2010 annotation 
+dsx_0.4 > dsx identity at threshold 0.4 
+dsx_positive_geneThr_0.4_minThr_0.1 > summary of dsx identity by cluster
+fru_dsx > fru, dsx or fru+dsx identity of cells 
+positiveCluster_0.5  > all cells in clusters positive for either fru or dsx when cluster number matches half the number of expected connectomics types
+positiveCluster_1 > all cells in clusters positive for either fru or dsx when cluster number matches the number of expected connectomics types
+pseudotime > aligned pseudotime values for all analysed trajectories
