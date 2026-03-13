@@ -15,11 +15,11 @@ For an interactive visualization of the data you can check our datasets on [Scop
 <br>
 Loom files have also available in [Zenodo](https://zenodo.org/)
 <br>
-- full dataset: 10.5281/zenodo.17183028 <br>
-- neurons: 10.5281/zenodo.17184089 <br>
-- glia: 10.5281/zenodo.17185431 <br>
-<br>
-To download files and inspect the data see [File_Download_and_RDS_Data_Inspection.Rmd](https://github.com/FlyNeuroAtlas/DevSeqVNC/blob/main/Code/File_Download_and_RDS_Data_Inspection.Rmd)
+* full dataset: 10.5281/zenodo.17183028 <br>
+* neurons: 10.5281/zenodo.17184089 <br>
+* glia: 10.5281/zenodo.17185431 
+<br><br>
+To download files and inspect the data [File_Download_and_RDS_Data_Inspection.Rmd](https://github.com/FlyNeuroAtlas/DevSeqVNC/blob/main/Code/File_Download_and_RDS_Data_Inspection.Rmd)
 
 
 
