@@ -9,17 +9,17 @@ Developmental scRNAseq atlas of the Nerve Cord of *Drosophila melanogaster*.
 ### Data availability
 Raw sequencing data, CellRanger outputs and the final Seurat objects, are available at Gene Expression Omnibus (GEO) under accession number GSE304221, and at BioProject under accession number PRJNA1297747.  
 <br>
-The metadata file can be found in [metada](<insert link>).
+The metadata file can be found in [metada](https://github.com/FlyNeuroAtlas/DevSeqVNC/tree/main/metadata).
 <br>
 For an interactive visualization of the data you can check our datasets on [Scope](https://scope.aertslab.org/#/HundredDrills/*/welcome).
 <br>
-Loom files have also available in [Zenodo]
+Loom files have also available in [Zenodo](https://zenodo.org/)
 <br>
 - full dataset: 10.5281/zenodo.17183028 <br>
 - neurons: 10.5281/zenodo.17184089 <br>
 - glia: 10.5281/zenodo.17185431 <br>
 <br>
-To download files and inspect the data see [File_Download_and_RDS_Data_Inspection.Rmd](<insert link>)
+To download files and inspect the data see [File_Download_and_RDS_Data_Inspection.Rmd](https://github.com/FlyNeuroAtlas/DevSeqVNC/blob/main/Code/File_Download_and_RDS_Data_Inspection.Rmd)
 
 
 
