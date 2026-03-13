@@ -1,0 +1,38 @@
+An object of class Seurat 
+24050 features across 69796 samples within 2 assays 
+Active assay: RNA (21050 features, 1986 variable features)
+ 3 layers present: counts, data, scale.data
+ 1 other assay present: integrated
+ 6 dimensional reductions calculated: pca, umap, simpleTSNE, PCA_allages, UMAP_allages, TSNE_allages
+
+UMAP embeddings:
+UMAP_allages: calculated before stage integration
+umap: calculated after integration
+
+Object metadata:
+orig.ident > 10x library lane
+nCount_RNA > number of detected UMI
+nFeature_RNA > number of detecte features
+Lane > 10x library lane
+BARCODE > Cell barcode without lane identifier
+donor_id_noVCF > vireo-assigned group in the absence of vcf reference
+donor_id_VCF > vireo-assigned group in the presence of vcf reference
+best_singlet_VCF > best vireo-assigned singlet group in the presence of vcf reference
+best_doublet_VCF > best and potential doublet combination if cell was a doublet
+percent_mito > percentage of counts assigned to mitochondria genes
+percent_ribo > percentage of counts assigned to ribosomal genes
+log10GenesPerUMI > log10-transformed ratio of the number of detected genes per UMI (Unique Molecular Identifier)
+rownames > Cell identifier
+SampleName > combination of collection date and collection vial
+Stage > Developmental stage of the animal the cell comes from
+Sex > Sex of the animal the cell comes from
+Tissue > Dissected tissue
+ExpectedMarker > Fluorescent marker carried by the genotype of the animal dissected, only expressed in specific cells
+UniqueCrossID > Unique identifier for the cross the sample came from
+Female_genotype > Genotype of the mother
+Male_genotype > Genotype of the father
+Pool > Sequencing lane identifier
+Assignment > Final DGRP genotype assigned through vireo demultiplexing
+lin.line > expected specific cells labelled by the line
+GliaCellType > Glial cell type assignment
+CellCyclePhase > Predicted phase of cell cycle

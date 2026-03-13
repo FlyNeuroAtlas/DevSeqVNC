@@ -1,0 +1,48 @@
+An object of class Seurat 
+24050 features across 379962 samples within 2 assays 
+Active assay: RNA (21050 features, 2957 variable features)
+ 3 layers present: counts, data, scale.data
+ 1 other assay present: integrated
+ 4 dimensional reductions calculated: pca, umap, PCAallages, UMAPallages
+
+UMAP embeddings:
+UMAPallages: calculated before stage integration
+umap: calculated after integration
+
+Details on the object construction can be found in Material and Methods and Supplemental Figure 1e of: "A Developmental Atlas of the Drosophila Nerve Cord Uncovers a Global Temporal Code for Neuronal Identity" (Cachero et al. 2025, doi.org/10.1101/2025.07.16.664682)
+
+Object metadata:
+orig.ident > 10x library lane
+nCount_RNA > number of detected UMI
+nFeature_RNA > number of detecte features
+Lane > 10x library lane
+BARCODE > Cell barcode without lane identifier
+donor_id_noVCF > vireo-assigned group in the absence of vcf reference
+donor_id_VCF > vireo-assigned group in the presence of vcf reference
+best_singlet_VCF > best vireo-assigned singlet group in the presence of vcf reference
+best_doublet_VCF > best and potential doublet combination if cell was a doublet
+percent_mito > percentage of counts assigned to mitochondria genes
+percent_ribo > percentage of counts assigned to ribosomal genes
+log10GenesPerUMI > log10-transformed ratio of the number of detected genes per UMI (Unique Molecular Identifier)
+rownames > Cell identifier
+SampleName > combination of collection date and collection vial
+Stage > Developmental stage of the animal the cell comes from
+Sex > Sex of the animal the cell comes from
+Tissue > Dissected tissue
+ExpectedMarker > Fluorescent marker carried by the genotype of the animal dissected, only expressed in specific cells
+UniqueCrossID > Unique identifier for the cross the sample came from
+Female_genotype > Genotype of the mother
+Male_genotype > Genotype of the father
+Pool > Sequencing lane identifier
+Assignment > Final DGRP genotype assigned through vireo demultiplexing
+lin.line > expected specific cells labelled by the line
+integrated_snn_res.0.4 > clusters at 0.4 resolution
+integrated_snn_res.0.8 > clusters at 0.8 resolution
+integrated_snn_res.1.2 > clusters at 1.2 resolution
+integrated_snn_res.10 > clusters at 10 resolution
+scores_glia.annot > ModuleScore for genes: wrapper, repo, CIC-a, loco, CG10702, CG6126, Gs2, Egfr, Tret1-1, bdl, Zasp52, rols, ine, CG5404, CG14688, CG31663, ry, CG4752, betaTub97EF, CG32473, LManII, Eaat1, alrm, Eaat2, axo, Vmat, moody, Indy, zyd
+scores_neurons.manual > ModuleScore for genes: elav, nSyb
+scores_other > ModuleScore for genes: CG11835, alphaTub85E, Act57B, betaTub60D
+bestModScore > Category of the best score
+bestModValue > Best score Value
+CellType > Final cell type assignment
