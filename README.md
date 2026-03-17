@@ -1,5 +1,5 @@
 # DevSeqVNC
-<img src="/images/VNC_stage.png" width="300" height=280 align="right" alt="Logo">
+<img src="/images/neurons_Ages_UMAPallages (1).png" width="300" height=280 align="right" alt="Logo">
 
 
 Developmental scRNAseq atlas of the Nerve Cord of *Drosophila melanogaster*.  
