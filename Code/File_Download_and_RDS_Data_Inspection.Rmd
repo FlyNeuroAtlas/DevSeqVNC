@@ -13,36 +13,70 @@ library(Seurat)
 library(ggplot2)
 library(tidyverse)
 library(SeuratDisk)
+library(SCopeLoomR)
 ```
 # ###############################################################################
 # Downloading the files
 
 ```{r}
 dest_file <- "PATH_TO_OUTPUT_FOLDER" #Replace with the path of the folder in quotes where all of the data will be saved
-file_name <- "FILE_NAME" #Replace with the name of the file in quotes.
 ```
 
-# 1. Downloading Seurat Objects from GEO (Recommended)
+# 1. Downloading Seurat Objects from GEO 
+Most of these .rds files are very large and cannot be loaded on a standard laptop — a high-memory server or HPC environment is recommended.
 ```{r}
 url <- "URL_FROM_GEO" #Replace with the GEO URL in quotes of the file you want to download 
+file_name <- "FILE_NAME" #Replace with the name of the file in quotes.
+
 options(timeout = 600) #it indicates the number of seconds that are used as a threshold for each file download. The larger the file the longer it will take to download. Increase accordingly depending on the file size.
 download.file(url, destfile = file.path(dest_file, file_name), mode = "wb") #downloads the file
 ```
-
-# 2. Downloading the Seurat Objects from GEO Manually (Recommended)
-
-# 3. Downloading loom files from Scope (NOT Recommended)
+# 2. Downloading loom files from Zenodo
 ```{r}
-#We recommend that you access the 'rds' files from our GEO page. However, if you wish to access the `.loom` file you can follow the following steps:
+#1. Downloading the `.loom` file from Zenodo
+  url <- "URL_FROM_ZENODO" #Replace with the Zenodo URL in quotes of the file you want to download 
+  file_name <- "FILE_NAME" #Replace with the name of the file in quotes.
+
+  options(timeout = 600) #it indicates the number of seconds that are used as a threshold for each file download. The larger the file the longer it will take to download. Increase accordingly depending on the file size.
+  download.file(url, destfile = file.path(dest_file, file_name), mode = "wb") #downloads the file
+
+#2. Downloading the metadata 
+    #The .loom file in Zenodo includes only 3 metadata columns (`orig.ident`, `nCount_RNA` and `nFeature_RNA`). For the rest of the columns that were produced from our analysis you will have to download the metadata from our GEO page. 
+  url <- "URL_FROM_GEO" #Replace with the GEO URL in quotes of the file you want to download 
+  file_name_metadata <- "FILE_NAME_METADATA" #Replace with the name of the file in quotes.
+  
+  options(timeout = 600) #it indicates the number of seconds that are used as a threshold for each file download. The larger the file the longer it will take to download. Increase accordingly depending on the file size.
+  download.file(url, destfile = file.path(dest_file, file_name_metadata), mode = "wb") #downloads the file
+  
+  
+#Reconstructing the Seurat Object
+import_loom <- Connect(loom_path, mode = "r") #gets the loom
+meta.data <- as.data.frame(read_csv(metadata_path)) 
+  
+dgem <- get_dgem(import_loom) #isolates information from the loom
+Seurat_object <- CreateSeuratObject(counts = dgem, meta.data = meta.data) #reconstructs the Seurat Object
+  
+#saving the object
+saveRDS(Seurat_object, file = file.path(dest_file, file_name))
+```
+
+# 3. Downloading loom files from Scope 
+```{r}
+#If you wish to access the `.loom` file you can follow the following steps:
   #1. Downloading the `.loom` file from Scope
       #The `.loom` file can be downloaded from Scope (floppy disk icon) but it does NOT include the metadata information.
       #For more information you can take a look at the Tutorials in Scope: https://www.youtube.com/watch?v=tHUNMo3Bsi0&t=2s
   #2. Downloading the metadata 
-      #The metadata of each .rds are saved on our GEO page. You can use the code in `1. Downloading Seurat Objects from GEO (Recommended)` to download the files or download them manually.
+      #The metadata of each .rds are saved on our GEO page. 
+    url <- "URL_FROM_GEO" #Replace with the GEO URL in quotes of the file you want to download 
+    file_name_metadata <- "FILE_NAME_METADATA" #Replace with the name of the file in quotes.
+    
+    options(timeout = 600) #it indicates the number of seconds that are used as a threshold for each file download. The larger the file the longer it will take to download. Increase accordingly depending on the file size.
+    download.file(url, destfile = file.path(dest_file, file_name_metadata), mode = "wb") #downloads the file
 
 #Importing the data        
 loom_path <- "PATH_TO_LOOM"    #Replace with the path of the folder in quotes where the loom was saved       
-metadata_path <- file.path(dest_file, file_name) #If the metadata object was NOT downloaded through `1. Downloading Seurat Objects from GEO` above, replace the paths with the location of the file in your system
+metadata_path <- file.path(dest_file, file_name_metadata) #If the metadata object was NOT downloaded through `1. Downloading Seurat Objects from GEO` above, replace the paths with the location of the file in your system
 
 import_loom <- Connect(loom_path, mode = "r") #gets the loom
 meta.data <- as.data.frame(read_csv(metadata_path)) 
@@ -52,7 +86,6 @@ Seurat_object <- CreateSeuratObject(counts = dgem, meta.data = meta.data) #recon
 
 #saving the object
 saveRDS(Seurat_object, file = file.path(dest_file, file_name))
-
 ```
 # ###############################################################################
 # Importing the data and setting the parameters
@@ -63,10 +96,10 @@ outputFolder <- "PATH_TO_OUTPUT_FOLDER" #Replace with the path of the folder whe
 
 #Importing the .rds objects
 #If the objects were NOT downloaded through `1. Downloading Seurat Objects from GEO` above, replace the paths with the location of the files in your system
-VNC.all <- file.path(dest_file, file_name) 
-VNC.neurons <- file.path(dest_file, file_name)
-VNC.subset.1ary <- file.path(dest_file, file_name)
-VNC.subset.2ary <- file.path(dest_file, file_name)
+VNC <- readRDS(file.path(dest_file, file_name))
+VNC.neurons <- readRDS(file.path(dest_file, file_name))
+VNC.1ary.neurons <- readRDS(file.path(dest_file, file_name))
+VNC.2ary.neurons <- readRDS(file.path(dest_file, file_name))
 ```
 
 # ###############################################################################
@@ -78,7 +111,7 @@ See UMAP in panel 1b for more information
 cols.glia.annotation <- c(wesanderson::wes_palettes[["Darjeeling1"]][1:3])
 names(cols.glia.annotation) <- c("glia","neuron","other")
 
-DimPlot(VNC.all, 
+DimPlot(VNC, 
         reduction = "UMAPallages", 
         group.by = "CellType",
         cols = cols.glia.annotation, 
@@ -240,21 +273,27 @@ ggsave(file.path(outputFolder, "VNC_combinedHemilineages.png"), width = 20, heig
 ## UMAP of primary and early secondary / secondary neurons
 See panel 1c for more information
 ```{r}
-#VNC.subset_allages <- readRDS(VNC.1ary.2ary.subset.folder)
-VNC.subset_allages <- readRDS(VNC.1ary.2ary.subset.final.folder)
-
 Stage.cols<- c("6"="#009E73", "24"="#CC79A7", "36"="#E69F00", "48"="#0072B2")
 
-lapply(c("primary", "secondary"), function(Stage){
-  DimPlot(VNC.subset_allages[[Stage]],
+#1ary neurons
+DimPlot(VNC.1ary.neurons,
           cols = Stage.cols,
           reduction = "umap_subset",
           group.by = "Stage",
           pt.size = 1.5,
           raster.dpi = c(1180,1180)) &
-    labs(title = paste(Stage, "neurons", sep=" "))
-  ggsave(file.path(outputFolder, paste0(Stage,"_umap_subset.png")), width = 20, height = 18, units = "cm", dpi = 600)
+    labs(title = "VNC primary neurons")
+ggsave(file.path(outputFolder, "VNC_1ary_neurons_umap.png"), width = 20, height = 18, units = "cm", dpi = 600)
 
-})
+#2ary neurons
+DimPlot(VNC.2ary.neurons,
+          cols = Stage.cols,
+          reduction = "umap_subset",
+          group.by = "Stage",
+          pt.size = 1.5,
+          raster.dpi = c(1180,1180)) &
+    labs(title = "VNC secondary neurons")
+ggsave(file.path(outputFolder, "VNC_2ary_neurons_umap.png"), width = 20, height = 18, units = "cm", dpi = 600)
+
 ```
 
