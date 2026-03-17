@@ -28,5 +28,8 @@ To download files and inspect the data see [File_Download_and_RDS_Data_Inspectio
 ### Citation
 <!--<img src="qr_biorxiv.png" width="50" height=50 align="right" alt="Logo">-->
 Cachero, S. et al. bioRxiv (2025) [doi.org/10.1101/2025.07.16.664682](https://doi.org/10.1101/2025.07.16.664682)
-
-
+<br><br>
+For questions and feedback plese contact us:<br>
+&nbsp;Greg Jefferis: jefferis@mrclmb.ac.uk<br>
+&nbsp;Erika Dona: erika.dona@in.cnr.it <br>
+&nbsp;Sebastian Cachero: scachero@mrclmb.ac.uk
