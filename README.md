@@ -10,17 +10,17 @@ Raw sequencing data, CellRanger outputs and the final Seurat objects, are availa
 <br>
 For an interactive visualization of the data you can check our datasets on [Scope](https://scope.aertslab.org/#/HundredDrills/*/welcome).
 <br>
-Loom files have also available in [Zenodo](https://zenodo.org/communities/devdrosneuro-scrnaseq/records?q=&l=list&p=1&s=10&sort=newest)
+Loom files have also available in Zenodo.
 <br>
 * VNC.loom: [10.5281/zenodo.17183028](https://doi.org/10.5281/zenodo.17183028) <br>
 * VNC.neurons.loom: [10.5281/zenodo.17184089](https://doi.org/10.5281/zenodo.17184089) <br>
 * VNC.glia.loom: [10.5281/zenodo.17185431](https://doi.org/10.5281/zenodo.17185431) <br>
 <br>
 
-The metadata file can be found in [metada](https://github.com/FlyNeuroAtlas/DevSeqVNC/tree/main/metadata).
+The metadata file can be found in [metadata](https://github.com/FlyNeuroAtlas/DevSeqVNC/tree/main/metadata).
 <br>
 
-To download files and inspect the data see [File_Download_and_RDS_Data_Inspection.Rmd](https://github.com/FlyNeuroAtlas/DevSeqVNC/blob/main/Code/File_Download_and_RDS_Data_Inspection.Rmd)
+To download files and inspect the data see [File_Download_and_RDS_Data_Inspection.Rmd](https://github.com/FlyNeuroAtlas/DevSeqVNC/blob/main/Code/File_Download_and_RDS_Data_Inspection.Rmd).
 
 
 
