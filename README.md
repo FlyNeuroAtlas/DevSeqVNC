@@ -13,7 +13,7 @@ The metadata file can be found in [metada](https://github.com/FlyNeuroAtlas/DevS
 <br>
 For an interactive visualization of the data you can check our datasets on [Scope](https://scope.aertslab.org/#/HundredDrills/*/welcome).
 <br>
-Loom files have also available in [Zenodo](https://zenodo.org/)
+Loom files have also available in [Zenodo](https://zenodo.org/communities/devdrosneuro-scrnaseq/records?q=&l=list&p=1&s=10&sort=newest)
 <br>
 * full dataset: 10.5281/zenodo.17183028 <br>
 * neurons: 10.5281/zenodo.17184089 <br>
