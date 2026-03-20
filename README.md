@@ -6,8 +6,8 @@ Developmental scRNAseq atlas of the Nerve Cord of *Drosophila melanogaster*.
 <br><br>
 
 ### Data availability
-Raw sequencing data, CellRanger outputs and the final Seurat objects, are available at Gene Expression Omnibus (GEO) under accession number [GSE304221](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE304221), and at BioProject under accession number [PRJNA1297747](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1297747).  
-<br>
+Raw sequencing data, CellRanger outputs and the final Seurat objects, are available at Gene Expression Omnibus (GEO) under accession number [GSE304221](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE304221), and at BioProject under accession number [PRJNA1297747](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1297747). This data sources will remain embargoed until journal publication. Please get in touch if you would like earlier access.
+<br><br>
 For an interactive visualization of the data you can check our datasets on [Scope](https://scope.aertslab.org/#/HundredDrills/*/welcome).
 <br>
 Loom files have also available in Zenodo.
