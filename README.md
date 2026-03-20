@@ -25,11 +25,16 @@ To download files and inspect the data see [File_Download_and_RDS_Data_Inspectio
 
 
 <br><br>
-### Citation
+## Citation
 <!--<img src="qr_biorxiv.png" width="50" height=50 align="right" alt="Logo">-->
-Cachero, S. et al. bioRxiv (2025) [doi.org/10.1101/2025.07.16.664682](https://doi.org/10.1101/2025.07.16.664682)
+### A Developmental Atlas of the Drosophila Nerve Cord Uncovers a Global Temporal Code for Neuronal Identity
+Sebastian Cachero, Myrto Mitletton, Isabella R. Beckett, Elizabeth C. Marin, Laia Serratosa Capdevila, Marina Gkantia, Jelly H. M. Soffers, Haluk Lacin, Gregory S. X. E. Jefferis, Erika Dona
+
+**Preprint:** bioRxiv (2025)  
+**DOI:** [https://doi.org/10.1101/2025.07.16.664682]
 <br><br>
 For questions and feedback plese contact us:<br>
+&nbsp;Sebastian Cachero: scachero@mrclmb.ac.uk
 &nbsp;Greg Jefferis: jefferis@mrclmb.ac.uk<br>
 &nbsp;Erika Dona: erika.dona@in.cnr.it <br>
-&nbsp;Sebastian Cachero: scachero@mrclmb.ac.uk
+
