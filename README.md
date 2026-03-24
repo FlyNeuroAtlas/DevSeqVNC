@@ -36,5 +36,5 @@ Sebastian Cachero, Myrto Mitletton, Isabella R. Beckett, Elizabeth C. Marin, Lai
 For questions and feedback plese contact us:<br>
 &nbsp;Sebastian Cachero: scachero@mrclmb.ac.uk
 &nbsp;Greg Jefferis: jefferis@mrclmb.ac.uk<br>
-&nbsp;Erika Dona: erika.dona@in.cnr.it <br>
+&nbsp;Erika Dona: erika.dona@cnr.it <br>
 
